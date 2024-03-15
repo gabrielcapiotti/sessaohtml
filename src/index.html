@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./script.js">
+    <link rel="stylesheet" href="style.css">
+    <title>Manipulação de Produtos</title>
+</head>
+
+
+<body>
+    <form id="formCreate" class="formulario">
+        <h2>Formulário 1: Criar Produto</h2>
+        <fieldset>
+            <legend>Criação de Produto</legend>
+            <label for="productName">Nome do Produto:</label>
+            <input type="text" id="productName" required><br>
+            <label for="productPrice">Preço do Produto:</label>
+            <input type="number" id="productPrice" step="0.01" required><br>
+            <button type="submit">Criar Produto</button>
+        </fieldset>
+    </form>
+
+    <form class="formulario">
+        <fieldset>
+            <h2>Formulário 2: Listar Todos os Produtos</h2>
+            <button id="btnListProducts">Listar Todos os Produtos</button>
+        </fieldset>
+    </form>
+
+    <form id="formUpdate" class="formulario">
+        <h2>Formulário 3: Atualizar Produto</h2>
+        <fieldset>
+            <legend>Atualização de Produtos</legend>
+            <label for="updateProductName">Nome do Produto Atualizado:</label>
+            <input type="text" id="updateProductName" required><br>
+            <label for="updateProductPrice">Preço do Produto Atualizado:</label>
+            <input type="number" id="updateProductPrice" step="0.01" required><br>
+            <button type="submit">Atualizar Produto</button>
+        </fieldset>
+    </form>
+
+    <form id="formDelete" class="formulario">
+        <h2>Formulário 4: Deletar Produto</h2>
+        <fieldset>
+            <legend>Deletar Produto</legend>
+            <label for="deleteProductName">Nome do Produto para Deletar:</label>
+            <input type="text" id="deleteProductName" required><br>
+            <button type="submit">Deletar Produto</button>
+        </fieldset>
+    </form>
+
+    <h2>Lista de Produtos:</h2>
+    <ul id="productList"></ul>
+
+    <script src="script.js"></script>
+</body>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const formCreate = document.getElementById('formCreate');
+        const formUpdate = document.getElementById('formUpdate');
+        const formDelete = document.getElementById('formDelete');
+        const btnListProducts = document.getElementById('btnListProducts');
+        const productList = document.getElementById('productList');
+
+        // Array para armazenar os produtos
+        let products = [];
+
+        // Função para criar um novo produto
+        formCreate.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const productName = document.getElementById('productName').value;
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+
+            // Adicionar o novo produto ao array
+            products.push({ name: productName, price: productPrice });
+
+            // Limpar o formulário
+            formCreate.reset();
+        });
+
+        // Função para listar todos os produtos
+        btnListProducts.addEventListener('click', function () {
+            productList.innerHTML = ''; // Limpar a lista antes de exibir os produtos
+            products.forEach(function (product) {
+                const li = document.createElement('li');
+                li.textContent = `Nome: ${product.name}, Preço: $${product.price.toFixed(2)}`;
+                productList.appendChild(li);
+            });
+        });
+
+        // Função para atualizar um produto
+        formUpdate.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const updateProductName = document.getElementById('updateProductName').value;
+            const updateProductPrice = parseFloat(document.getElementById('updateProductPrice').value);
+
+            // Encontrar e atualizar o produto no array
+            products.forEach(function (product) {
+                if (product.name === updateProductName) {
+                    product.price = updateProductPrice;
+                }
+            });
+
+            // Limpar o formulário
+            formUpdate.reset();
+        });
+
+        // Função para deletar um produto
+        formDelete.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const deleteProductName = document.getElementById('deleteProductName').value;
+
+            // Filtrar o array de produtos removendo o produto com o nome especificado
+            products = products.filter(function (product) {
+                return product.name !== deleteProductName;
+            });
+
+            // Limpar o formulário
+            formDelete.reset();
+        });
+    });
+
+
+
+</script>
+
+
+</html>

@@ -1,0 +1,57 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2b385b;
+    display: inline-block;
+    text-align: center;
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+}
+
+.formulario {
+    width: 50vw;
+    height: auto;
+    background-color: darkolivegreen;
+    color: black;
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+fieldset {
+    margin-bottom: 20px; /* Adiciona espaço entre os campos do formulário */
+}
+
+legend {
+    font-weight: bold; /* Torna o texto da legenda em negrito */
+}
+
+label {
+    display: block; /* Garante que as etiquetas ocupem uma linha separada */
+    margin-bottom: 5px; /* Adiciona espaço abaixo de cada etiqueta */
+}
+
+
+button {
+    padding: 10px 20px; /* Adiciona preenchimento interno aos botões */
+    background-color: #114d00; /* Define a cor de fundo dos botões */
+    color: #fff; /* Define a cor do texto dos botões */
+    border: none; /* Remove a borda dos botões */
+    border-radius: 4px; /* Adiciona um leve arredondamento às bordas dos botões */
+    cursor: pointer; /* Altera o cursor ao passar por cima dos botões */
+}
+
+button:hover {
+    background-color: #067400; /* Define a cor de fundo dos botões ao passar o mouse sobre eles */
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 300px;
+    padding: 3px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: justify;
+}
